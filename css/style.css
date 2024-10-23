@@ -63,3 +63,33 @@ a:focus-visible {
 a:active {
   color: var(--LINK-ACTIVE);
 }
+
+/* || HEADER */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.header__h1 {
+  text-align: center;
+  background-color: var(--HEADER-BGCOLOR);
+  color: var(--HEADER-COLOR);
+  padding: var(--PADDING-TB) var(--PADDING-SIDE);
+}
+
+.header__nav {
+  background-color: var(--NAV-BGCOLOR);
+  border-bottom: var(--BORDERS);
+  font-weight: bold;
+  box-shadow: 0 6px 5px var(--BORDER-COLOR);
+}
+
+.header__ul {
+  padding: var(--PADDING-TB) var(--PADDING-SIDE);
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
