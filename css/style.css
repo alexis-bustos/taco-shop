@@ -369,3 +369,12 @@ tfoot td {
     font-size: 125%;
   }
 }
+
+#crunchy {
+  width: 200px;
+  height: auto;
+}
+#soft {
+  width: 200px;
+  height: auto;
+}
