@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart - The Little Taco Shop</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header__h1">Little Taco Shop</h1>
+      <nav class="header__nav">
+        <ul class="header__ul">
+          <li><a href="index.html">Menu</a></li>
+          <li>
+            <a href="cart.html"> 🛒 Cart (<span id="cart-count">0</span>) </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <article class="main__article">
+        <h2 class="menu__h2">Your Cart</h2>
+        <table class="cart__container">
+          <thead>
+            <tr>
+              <th class="cart__header">Item</th>
+              <th class="cart__header">Quantity</th>
+              <th class="cart__header">Subtotal</th>
+              <th class="cart__header">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <!-- Cart items will be populated here -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="cart__item" colspan="4">
+                <strong>Total: $<span id="cart-total">0.00</span></strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2024 Little Taco Shop</p>
+    </footer>
+
+    <script>
+      function displayCartItems() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const groupedCart = cart.reduce((acc, { item, price }) => {
+          if (acc[item]) {
+            acc[item].quantity += 1;
+            acc[item].subtotal += price;
+          } else {
+            acc[item] = { quantity: 1, subtotal: price, price };
+          }
+          return acc;
+        }, {});
+
+        const cartItemsContainer = document.getElementById("cart-items");
+        const totalElement = document.getElementById("cart-total");
+        let total = 0;
+
+        cartItemsContainer.innerHTML = "";
+        Object.keys(groupedCart).forEach((item) => {
+          const { quantity, subtotal, price } = groupedCart[item];
+          const row = document.createElement("tr");
+          row.classList.add("cart__row");
+          row.innerHTML = `
+            <td class="cart__item">${item}</td>
+            <td class="cart__item">${quantity}</td>
+            <td class="cart__item">$${subtotal.toFixed(2)}</td>
+            <td class="cart__item"><button onclick="removeItem('${item}')">Remove</button></td>
+          `;
+          cartItemsContainer.appendChild(row);
+          total += subtotal;
+        });
+
+        totalElement.textContent = total.toFixed(2);
+        document.getElementById("cart-count").textContent = cart.length;
+      }
+
+      function removeItem(itemName) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart = cart.filter(({ item }) => item !== itemName);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        displayCartItems();
+      }
+
+      document.addEventListener("DOMContentLoaded", displayCartItems);
+    </script>
+  </body>
+</html>

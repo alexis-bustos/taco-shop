@@ -33,6 +33,9 @@
           <li>
             <a href="reviews.html">Reviews</a>
           </li>
+          <li>
+            <a href="cart.html"> 🛒 Cart (<span id="cart-count">0</span>) </a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -66,7 +69,7 @@
           <tbody>
             <tr>
               <th class="menu__item menu__cr" scope="row" rowspan="3">
-                Crunchy
+                <a href="#menu" onclick="addToCart('Crunchy', 1.5)">Crunchy</a>
               </th>
               <td class="menu__item">1</td>
               <td class="menu__item">$1.50</td>
@@ -80,7 +83,9 @@
               <td class="menu__item">$3.25</td>
             </tr>
             <tr>
-              <th class="menu__item menu__sf" scope="row" rowspan="3">Soft</th>
+              <th class="menu__item menu__sf" scope="row" rowspan="3">
+                <a href="#menu" onclick="addToCart('Soft', 2.0)">Soft</a>
+              </th>
               <td class="menu__item">1</td>
               <td class="menu__item">$2.00</td>
             </tr>
@@ -113,5 +118,22 @@
         <span>Little Taco Shop</span>
       </p>
     </footer>
+
+    <!-- <script>
+      // JavaScript to handle adding items to cart
+      function addToCart(item, price) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ item, price });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+      }
+
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cart-count").textContent = cart.length;
+      }
+
+      document.addEventListener("DOMContentLoaded", updateCartCount);
+    </script> -->
   </body>
 </html>
