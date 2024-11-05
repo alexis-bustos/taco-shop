@@ -1,90 +1,65 @@
-// Set the year
-const year = document.getElementById("year");
-const thisYear = new Date().getFullYear();
-year.setAttribute("datetime", thisYear);
-year.textContent = thisYear;
-
-// Add event listeners for the first rating section
-let rate5Button = document.getElementById("rate5Btn");
-rate5Button.addEventListener("click", function () {
-  updateRating(5, "1");
-});
-
-let rate4Button = document.getElementById("rate4Btn");
-rate4Button.addEventListener("click", function () {
-  updateRating(4, "1");
-});
-
-let rate3Button = document.getElementById("rate3Btn");
-rate3Button.addEventListener("click", function () {
-  updateRating(3, "1");
-});
-
-let rate2Button = document.getElementById("rate2Btn");
-rate2Button.addEventListener("click", function () {
-  updateRating(2, "1");
-});
-
-let rate1Button = document.getElementById("rate1Btn");
-rate1Button.addEventListener("click", function () {
-  updateRating(1, "1");
-});
-
-// Add event listeners for the second rating section
-let rate10Button = document.getElementById("rate10Btn");
-rate10Button.addEventListener("click", function () {
-  updateRating(5, "2");
-});
-
-let rate9Button = document.getElementById("rate9Btn");
-rate9Button.addEventListener("click", function () {
-  updateRating(4, "2");
-});
-
-let rate8Button = document.getElementById("rate8Btn");
-rate8Button.addEventListener("click", function () {
-  updateRating(3, "2");
-});
-
-let rate7Button = document.getElementById("rate7Btn");
-rate7Button.addEventListener("click", function () {
-  updateRating(2, "2");
-});
-
-let rate6Button = document.getElementById("rate6Btn");
-rate6Button.addEventListener("click", function () {
-  updateRating(1, "2");
-});
-
-// Update rating function now accepts an identifier to know which set of stars to update
-function updateRating(newRating, ratingSet) {
-  let star1 = document.getElementById("rating" + ratingSet + "-1");
-  let star2 = document.getElementById("rating" + ratingSet + "-2");
-  let star3 = document.getElementById("rating" + ratingSet + "-3");
-  let star4 = document.getElementById("rating" + ratingSet + "-4");
-  let star5 = document.getElementById("rating" + ratingSet + "-5");
-
-  // Reset all stars to light gray initially
-  star1.style.color = "lightgray";
-  star2.style.color = "lightgray";
-  star3.style.color = "lightgray";
-  star4.style.color = "lightgray";
-  star5.style.color = "lightgray";
-
-  // Change the color of the stars based on the rating
-  if (newRating >= 1) {
-    star1.style.color = "blue";
+document.addEventListener("DOMContentLoaded", function () {
+  // Set the year in the footer
+  const year = document.getElementById("year");
+  if (year) {
+    const thisYear = new Date().getFullYear();
+    year.setAttribute("datetime", thisYear);
+    year.textContent = thisYear;
   }
-  if (newRating >= 2) {
-    star2.style.color = "blue";
+
+  // Function to add event listener if the element exists
+  function addClickListener(buttonId, ratingValue, ratingSet) {
+    const button = document.getElementById(buttonId);
+    if (button) {
+      button.addEventListener("click", function () {
+        updateRating(ratingValue, ratingSet);
+      });
+    }
   }
-  if (newRating >= 3) {
-    star3.style.color = "blue";
+
+  // Add event listeners for the first rating section
+  addClickListener("rate5Btn", 5, "1");
+  addClickListener("rate4Btn", 4, "1");
+  addClickListener("rate3Btn", 3, "1");
+  addClickListener("rate2Btn", 2, "1");
+  addClickListener("rate1Btn", 1, "1");
+
+  // Add event listeners for the second rating section
+  addClickListener("rate10Btn", 5, "2");
+  addClickListener("rate9Btn", 4, "2");
+  addClickListener("rate8Btn", 3, "2");
+  addClickListener("rate7Btn", 2, "2");
+  addClickListener("rate6Btn", 1, "2");
+
+  // Update rating function now accepts an identifier to know which set of stars to update
+  function updateRating(newRating, ratingSet) {
+    // Retrieve stars by rating set
+    for (let i = 1; i <= 5; i++) {
+      const star = document.getElementById(`rating${ratingSet}-${i}`);
+      if (star) {
+        star.style.color = i <= newRating ? "blue" : "lightgray";
+      }
+    }
   }
-  if (newRating >= 4) {
-    star4.style.color = "blue";
-  }
-  if (newRating == 5) {
-    star5.style.color = "blue";
-  }
+});
+
+// JavaScript to handle adding items to cart
+function addToCart(item, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ item, price });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
 }
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  document.getElementById("cart-count").textContent = cart.length;
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
+
+//-----------------
+//-----------------
+//-----------------
+//-----------------
+//-----------------

@@ -378,3 +378,50 @@ tfoot td {
   width: 200px;
   height: auto;
 }
+
+/* || CART */
+
+.cart__container {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  table-layout: fixed; /* Ensure equal cell widths */
+}
+
+.cart__header,
+.cart__item {
+  border: 1px solid var(--BORDER-COLOR);
+  padding: 1em;
+  text-align: center;
+}
+
+.cart__header {
+  font-weight: bold;
+  color: var(--HIGHLIGHT-COLOR);
+}
+
+.cart__row {
+  display: table-row; /* Ensures each row is properly aligned */
+}
+
+.cart__container tbody tr {
+  display: table-row; /* Forces each cart item to appear as a separate row */
+}
+
+.cart__item strong {
+  color: var(--HIGHLIGHT-COLOR);
+}
+
+.cart__item button {
+  padding: 0.25em 0.5em;
+  margin: 0 0.2em;
+  border: none;
+  border-radius: var(--BORDER-RADIUS);
+  background-color: var(--HIGHLIGHT-COLOR);
+  color: var(--BUTTON-COLOR);
+  cursor: pointer;
+}
+
+.cart__item button:hover {
+  background-color: var(--LINK-HOVER);
+}
