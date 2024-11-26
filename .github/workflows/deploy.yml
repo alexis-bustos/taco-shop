@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 22.9
 
-      # Step 3: Install dependencies
+      # Step 3: Install dependencie s
       - name: Install dependencies
         run: npm install
 
