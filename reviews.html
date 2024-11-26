@@ -8,7 +8,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <script src="js/main.js" defer></script>
+    <script src="js/reviews.js" type="module" defer></script>
   </head>
   <body>
     <header class="header">
@@ -47,71 +47,41 @@
     </section>
 
     <main class="main">
+      <h2>Little Taco Shop Reviews</h2>
       <section>
-        <h2>Little Taco Shop Reviews</h2>
-        <h3>Loved the crunchy tacos</h3>
-        <p>
-          <strong>Rating:</strong>
-          <span id="rating1-1">*</span>
-          <span id="rating1-2">*</span>
-          <span id="rating1-3">*</span>
-          <span id="rating1-4">*</span>
-          <span id="rating1-5">*</span>
-        </p>
+        <h3>Add Your Review</h3>
+        <form id="reviewForm">
+          <label for="userName">Name:</label><br />
+          <input
+            type="text"
+            id="userName"
+            placeholder="Your name"
+            required /><br /><br />
 
-        <p>
-          <strong>Update rating:</strong>
-          <button id="rate1Btn" class="btn btn-light">Rate 1</button>
-          <button id="rate2Btn" class="btn btn-light">Rate 2</button>
-          <button id="rate3Btn" class="btn btn-light">Rate 3</button>
-          <button id="rate4Btn" class="btn btn-light">Rate 4</button>
-          <button id="rate5Btn" class="btn btn-light">Rate 5</button>
-        </p>
+          <label for="reviewText">Review:</label><br />
+          <textarea
+            id="reviewText"
+            rows="4"
+            cols="50"
+            placeholder="Write your review here"
+            required></textarea
+          ><br /><br />
 
-        <p><strong>Favorite dish:</strong> Crunchy Tacos</p>
+          <label for="rating">Rating:</label><br />
+          <select id="rating">
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5" selected>5 Stars</option></select
+          ><br /><br />
 
-        <img src="img/tacos_crunchy.jpg" id="crunchy" alt="crunchy taco" />
-
-        <p>
-          <strong>Review:</strong> If you’re a fan of crunchy tacos, this place
-          is a must-visit! I’ve had crunchy tacos from all over, but none
-          compare to the ones here. The shell is perfectly crisp without being
-          too hard, and it holds together with every bite. Every bite had that
-          satisfying crunch, and I couldn’t get enough!
-        </p>
-        <br />
+          <button type="submit">Submit Review</button>
+        </form>
       </section>
-      <section>
-        <h3>Best tacos I've had in a while</h3>
-        <p>
-          <strong>Rating:</strong>
-          <span id="rating2-1">*</span>
-          <span id="rating2-2">*</span>
-          <span id="rating2-3">*</span>
-          <span id="rating2-4">*</span>
-          <span id="rating2-5">*</span>
-        </p>
 
-        <p>
-          <strong>Update rating:</strong>
-          <button id="rate6Btn" class="btn btn-light">Rate 1</button>
-          <button id="rate7Btn" class="btn btn-light">Rate 2</button>
-          <button id="rate8Btn" class="btn btn-light">Rate 3</button>
-          <button id="rate9Btn" class="btn btn-light">Rate 4</button>
-          <button id="rate10Btn" class="btn btn-light">Rate 5</button>
-        </p>
-
-        <p><strong>Favorite dish:</strong> Soft Tacos</p>
-
-        <img src="img/tacos_delicioso_1000x667.png" id="soft" alt="soft taco" />
-
-        <p>
-          <strong>Review:</strong> I've tried many taco spots around town, but
-          these are hands down the best tacos I've had in a while! The flavors
-          are incredible, the tortillas are fresh, and the meat is cooked to
-          perfection. Definitely my new go-to taco place!
-        </p>
-      </section>
+      <h2 style="margin-top: 20px">User Reviews</h2>
+      <section id="userReviews" class="user_reviews"></section>
     </main>
 
     <footer class="footer">

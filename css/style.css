@@ -425,3 +425,7 @@ tfoot td {
 .cart__item button:hover {
   background-color: var(--LINK-HOVER);
 }
+
+.user_reviews {
+  margin-top: 25px;
+}
