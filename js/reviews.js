@@ -1,5 +1,3 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/+esm";
-
 const SUPABASE_URL = "https://cbqlgidfawaybcrmjqzm.supabase.co";
 const SUPABASE_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWxnaWRmYXdheWJjcm1qcXptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI1ODczMTAsImV4cCI6MjA0ODE2MzMxMH0.WXv9233sdzpnvV8zsnZSCd6mR9jsQfgzg_ULXSSbfSo";
