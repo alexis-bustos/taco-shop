@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_KEY;
+const SUPABASE_URL = "https://cbqlgidfawaybcrmjqzm.supabase.co";
+const SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWxnaWRmYXdheWJjcm1qcXptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI1ODczMTAsImV4cCI6MjA0ODE2MzMxMH0.WXv9233sdzpnvV8zsnZSCd6mR9jsQfgzg_ULXSSbfSo";
 
 // Check for missing Supabase credentials
 if (!SUPABASE_URL || !SUPABASE_KEY) {
