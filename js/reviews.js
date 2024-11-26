@@ -1,16 +1,10 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/+esm";
 
 const SUPABASE_URL = "https://cbqlgidfawaybcrmjqzm.supabase.co";
 const SUPABASE_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWxnaWRmYXdheWJjcm1qcXptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI1ODczMTAsImV4cCI6MjA0ODE2MzMxMH0.WXv9233sdzpnvV8zsnZSCd6mR9jsQfgzg_ULXSSbfSo";
 
-// Check for missing Supabase credentials
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-  console.error("Supabase URL or Key is missing. Please check your .env file.");
-  alert("Unable to initialize Supabase. Please contact support.");
-}
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.addEventListener("DOMContentLoaded", () => {
   const reviewForm = document.getElementById("reviewForm");
@@ -40,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       ])
       .select("*");
-
+    console.log(data, error);
     if (error) {
       console.error("Error saving review:", error);
       alert("There was an error saving your review.");
