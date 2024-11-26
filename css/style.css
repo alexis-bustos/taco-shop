@@ -429,3 +429,27 @@ tfoot td {
 .user_reviews {
   margin-top: 25px;
 }
+
+.reviews__input,
+.reviews__textarea {
+  padding: 0.5em;
+  border-radius: var(--BORDER-RADIUS);
+  border-width: 2px;
+  width: 100%;
+}
+
+.reviews__button {
+  padding: 0.5em;
+  border-radius: var(--BORDER-RADIUS);
+  background-color: var(--HIGHLIGHT-COLOR);
+  color: var(--BUTTON-COLOR);
+  font-weight: bold;
+}
+
+.reviews_select {
+  padding: 0.5em;
+  background-color: var(--HIGHLIGHT-COLOR);
+  color: var(--BUTTON-COLOR);
+  font-weight: bold;
+  border-radius: 5px;
+}
