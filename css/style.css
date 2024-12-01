@@ -423,7 +423,7 @@ tfoot td {
   display: flex; /* Use flexbox for alignment */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  height: 100%; /* Ensure it occupies the full height of the row */
+  height: 10vh; /* Ensure it occupies the full height of the row */
   text-align: center; /* Fallback for older browsers */
 }
 
@@ -467,4 +467,18 @@ tfoot td {
   color: var(--BUTTON-COLOR);
   font-weight: bold;
   border-radius: 5px;
+}
+
+.highlight {
+  background-color: #ffeb3b; /* Yellow highlight */
+  animation: fadeOut 1s ease-out;
+}
+
+@keyframes fadeOut {
+  0% {
+    background-color: #ffeb3b;
+  }
+  100% {
+    background-color: transparent;
+  }
 }
