@@ -400,6 +400,13 @@ tfoot td {
   color: var(--HIGHLIGHT-COLOR);
 }
 
+@media screen and (max-width: 576px) {
+  .cart__header,
+  .cart__item {
+    padding: 0.5em;
+  }
+}
+
 .cart__row {
   display: table-row; /* Ensures each row is properly aligned */
 }
@@ -410,6 +417,14 @@ tfoot td {
 
 .cart__item strong {
   color: var(--HIGHLIGHT-COLOR);
+}
+
+.cart__actions {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Ensure it occupies the full height of the row */
+  text-align: center; /* Fallback for older browsers */
 }
 
 .cart__item button {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart - The Little Taco Shop</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/main.js" type="module" defer></script>
   </head>
 
   <body>
@@ -12,7 +13,7 @@
       <h1 class="header__h1">Little Taco Shop</h1>
       <nav class="header__nav">
         <ul class="header__ul">
-          <li><a href="index.html">Menu</a></li>
+          <li><a href="index.html#menu">Menu</a></li>
           <li>
             <a href="cart.html"> 🛒 Cart (<span id="cart-count">0</span>) </a>
           </li>
@@ -47,37 +48,82 @@
     </main>
 
     <footer class="footer">
-      <p>&copy; 2024 Little Taco Shop</p>
+      <p>
+        <span>Copyright &copy; <time id="year"></time></span>
+        <span>Little Taco Shop</span>
+      </p>
     </footer>
 
     <script>
       function displayCartItems() {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const groupedCart = cart.reduce((acc, { item, price }) => {
-          if (acc[item]) {
-            acc[item].quantity += 1;
-            acc[item].subtotal += price;
+
+        // Use reduce to calculate grouped items and maintain order
+        const groupedCart = [];
+        cart.forEach(({ item, price }) => {
+          const existingItem = groupedCart.find((entry) => entry.item === item);
+          if (existingItem) {
+            existingItem.quantity += 1;
+            if (item === "Crunchy") {
+              const setsOfThree = Math.floor(existingItem.quantity / 3);
+              const remainder = existingItem.quantity % 3;
+              existingItem.subtotal =
+                setsOfThree * 3.25 +
+                (remainder === 1 ? 1.5 : remainder === 2 ? 2.5 : 0);
+            } else if (item === "Soft") {
+              const setsOfThree = Math.floor(existingItem.quantity / 3);
+              const remainder = existingItem.quantity % 3;
+              existingItem.subtotal =
+                setsOfThree * 4.5 +
+                (remainder === 1 ? 2.0 : remainder === 2 ? 3.5 : 0);
+            } else {
+              existingItem.subtotal += price;
+            }
           } else {
-            acc[item] = { quantity: 1, subtotal: price, price };
+            groupedCart.push({
+              item,
+              quantity: 1,
+              subtotal: price,
+            });
           }
-          return acc;
-        }, {});
+        });
 
         const cartItemsContainer = document.getElementById("cart-items");
         const totalElement = document.getElementById("cart-total");
+
+        // Clear previous cart items
+        cartItemsContainer.innerHTML = "";
+
+        if (cart.length === 0) {
+          // If the cart is empty, show an empty message in the <tbody>
+          const emptyRow = document.createElement("tr");
+          emptyRow.innerHTML = `
+            <td class="cart__item" colspan="4" style="text-align: center;">
+              Your cart is empty.
+            </td>
+          `;
+          cartItemsContainer.appendChild(emptyRow);
+
+          // Set total to $0.00
+          totalElement.textContent = "0.00";
+
+          // Update cart count
+          document.getElementById("cart-count").textContent = "0";
+
+          return; // Exit early as there are no items to process
+        }
+
         let total = 0;
 
-        cartItemsContainer.innerHTML = "";
-        Object.keys(groupedCart).forEach((item) => {
-          const { quantity, subtotal, price } = groupedCart[item];
+        groupedCart.forEach(({ item, quantity, subtotal }) => {
           const row = document.createElement("tr");
           row.classList.add("cart__row");
           row.innerHTML = `
-            <td class="cart__item">${item}</td>
-            <td class="cart__item">${quantity}</td>
-            <td class="cart__item">$${subtotal.toFixed(2)}</td>
-            <td class="cart__item"><button onclick="removeItem('${item}')">Remove</button></td>
-          `;
+                            <td class="cart__item">${item}</td>
+                            <td class="cart__item">${quantity}</td>
+                            <td class="cart__item">$${subtotal.toFixed(2)}</td>
+                            <td class="cart__item cart__actions"><button onclick="removeItem('${item}')">Remove</button></td>
+                          `;
           cartItemsContainer.appendChild(row);
           total += subtotal;
         });
@@ -88,9 +134,25 @@
 
       function removeItem(itemName) {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart = cart.filter(({ item }) => item !== itemName);
+
+        // Find the first instance of the item and remove it
+        const index = cart.findIndex(({ item }) => item === itemName);
+        if (index !== -1) {
+          cart.splice(index, 1); // Remove only one instance
+        } else {
+          console.warn(`Item "${itemName}" not found in the cart.`);
+        }
+
+        // Update the cart in local storage
         localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Recalculate and update the cart display
         displayCartItems();
+
+        // If the cart becomes empty, provide feedback to the user
+        if (cart.length === 0) {
+          console.log("Your cart is now empty.");
+        }
       }
 
       document.addEventListener("DOMContentLoaded", displayCartItems);
