@@ -22,3 +22,4 @@ document.addEventListener("DOMContentLoaded", updateCartCount);
 
 // Attach the function to the global `window` object
 window.addToCart = addToCart;
+window.updateCartCount = updateCartCount;
