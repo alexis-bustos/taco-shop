@@ -1,7 +1,3 @@
-# Taco-Restaurant
-
-[![Taco Shop](./taco-shop.png)](https://tacorestaurant.netlify.app/)
-
 # 🌮 Little Taco Shop — Taco-Restaurant
 
 <p align="center">
