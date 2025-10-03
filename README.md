@@ -248,7 +248,7 @@ http://localhost:5173
 
 **Alexis Bustos**
 Live Site: [https://tacorestaurant.netlify.app/](https://tacorestaurant.netlify.app/)
-LinkedIn: [https://linkedin.com/alexis-bustos]
+LinkedIn: [LinkedIn](https://www.linkedin.com/in/alexis-bustos/)]
 
 ---
 
